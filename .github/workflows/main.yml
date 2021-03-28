@@ -29,11 +29,6 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew build
 
-      - name: Build and analyze
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          run: ./gradlew build sonarqube --info
 
   test:
     runs-on: ubuntu-latest
@@ -43,4 +38,14 @@ jobs:
       # Testing the project
       - name: Test with Gradle
         run: ./gradlew test
+
+  analyze:
+    runs-on: ubuntu-latest
+    step:
+      - uses: actions/checkout@v2
+      - name: Sonar analyze
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          run: ./gradlew build sonarqube --info
 
