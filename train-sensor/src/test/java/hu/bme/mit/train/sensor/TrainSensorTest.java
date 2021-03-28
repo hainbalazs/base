@@ -63,4 +63,9 @@ public class TrainSensorTest {
         verify(mockTU, times(0)).setAlarmState(true);
         when(mockTU.getAlarmState()).thenReturn(false);
     }
+
+    @Test
+    public void getSpeedLimit_test(){
+        assertEquals(ts.getSpeedLimit(), 5);
+    }
 }
