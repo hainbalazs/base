@@ -11,7 +11,7 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 	private Timer timer = new Timer();
-	private int time_unit = 1000;
+	private int timeUnit = 1000;
 
 	@Override
 	public void followSpeed() {
