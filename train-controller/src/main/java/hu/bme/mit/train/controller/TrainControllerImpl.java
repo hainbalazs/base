@@ -60,7 +60,7 @@ public class TrainControllerImpl implements TrainController {
 		this.step = joystickPosition;
 		timer.cancel();
 		timer = new Timer();
-		timer.schedule(createTask(), time_unit);
+		timer.schedule(createTask(), timeUnit);
 	}
 
 }
