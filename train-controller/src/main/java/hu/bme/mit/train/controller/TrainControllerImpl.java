@@ -11,13 +11,6 @@ public class TrainControllerImpl implements TrainController {
 	private int referenceSpeed = 0;
 	private int speedLimit = 0;
 	private Timer timer = new Timer();
-	private TimerTask timerTask = new TimerTask() {
-
-		@Override
-		public void run() {
-			followSpeed();
-		}
-	};
 
 	@Override
 	public void followSpeed() {
@@ -52,12 +45,21 @@ public class TrainControllerImpl implements TrainController {
 		}
 	}
 
+	private TimerTask createTask() {
+		return new TimerTask() {
+			@Override
+			public void run() {
+				followSpeed();
+			}
+		};
+	}
+
 	@Override
 	public void setJoystickPosition(int joystickPosition) {
 		this.step = joystickPosition;
 		timer.cancel();
 		timer = new Timer();
-		timer.schedule(timerTask, 1000);
+		timer.schedule(createTask(), 1000);
 	}
 
 }
