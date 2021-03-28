@@ -44,7 +44,7 @@ jobs:
     step:
       - uses: actions/checkout@v2
       - name: Sonar analyze
-          env:
+        env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           run: ./gradlew build sonarqube --info
